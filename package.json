@@ -1,0 +1,19 @@
+{
+  "name": "movieplus",
+  "version": "1.0.0",
+  "description": "A practice using an API REST of movies",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliezermch/movieplus.git"
+  },
+  "author": "Eliezer Chirino",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eliezermch/movieplus/issues"
+  },
+  "homepage": "https://github.com/eliezermch/movieplus#readme"
+}
