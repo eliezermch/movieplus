@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/eliezermch/movieplus/issues"
   },
-  "homepage": "https://github.com/eliezermch/movieplus#readme"
+  "homepage": "https://github.com/eliezermch/movieplus#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
 }

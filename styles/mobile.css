@@ -174,7 +174,7 @@ footer {
   display: inline-block;
 }
 .header-arrow--white {
-  color: var(--red-light-1);
+  color: var(--white);
 }
 
 .header-searchForm {
@@ -345,7 +345,7 @@ footer {
   margin-top: 403px;
   z-index: 1;
   position: absolute;
-  background-color: var(--red-light-1);
+  background-color: var(--background-color);
 }
 
 .movieDetail-title {
@@ -353,6 +353,7 @@ footer {
   width: 80%;
   margin: 0 0 16px 0;
   padding: 0;
+  color: var(--first-color-red);
 }
 
 .movieDetail-score {
@@ -369,6 +370,7 @@ footer {
 
 .movieDetail-description {
   margin: 0 0 24px 0;
+  color: var(--white);
 }
 
 .relatedMovies-container {
@@ -378,6 +380,7 @@ footer {
 
 .relatedMovies-title {
   margin-bottom: 16px;
+  color: var(--red-dark-1);
 }
 
 .relatedMovies-scrollContainer {
