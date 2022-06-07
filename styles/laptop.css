@@ -30,8 +30,15 @@ h2 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
 
+.genericList-container {
+  gap: 16px;
+}
+
 .category-container {
   width: auto;
+}
+.movieDetail-container {
+  margin-top: 494px;
 }
 
 @media (min-width: 1024px) {
@@ -39,6 +46,7 @@ h2 {
     font-size: var(--font-size-md);
   }
   .trendingPreview-movieList {
+    overflow-x: hidden;
     height: auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(142px, 1fr));
@@ -62,5 +70,11 @@ h2 {
   }
   .trendingPreview-btn {
     display: none;
+  }
+  /* .header-container--long {
+    height: 86%;
+  } */
+  .movieDetail-container {
+    margin-top: 526px;
   }
 }

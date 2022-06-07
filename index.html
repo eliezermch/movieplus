@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="./node_modules/@splidejs/splide/dist/css/splide.min.css"
+    />
     <link rel="stylesheet" href="./styles/mobile.css" />
     <link
       rel="stylesheet"
@@ -43,13 +47,15 @@
       </div>
 
       <article class="trendingPreview-movieList">
-        <!-- <div class="movie-container">
-          <img
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading"></div>
+        <div class="movie-container movie-container--loading">
+          <!-- <img
             src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
             class="movie-img"
             alt="Nombre de la película"
-          />
-        </div> -->
+          /> -->
+        </div>
       </article>
     </section>
 
@@ -57,20 +63,24 @@
       <h2 class="categoriesPreview-title">Categorías</h2>
 
       <article class="categoriesPreview-list">
-        <!-- <div class="category-container">
-          <h3 id="id28" class="category-title">Romance</h3>
-        </div> -->
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading"></div>
+        <div class="category-container category-container--loading">
+          <!-- <h3 id="id28" class="category-title">Romance</h3> -->
+        </div>
       </article>
     </section>
 
     <section id="genericList" class="genericList-container inactive">
-      <!-- <div class="movie-container">
-        <img
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading"></div>
+      <div class="movie-container movie-container--loading">
+        <!-- <img
           src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
           class="movie-img"
           alt="Nombre de la película"
-        />
-      </div> -->
+        /> -->
+      </div>
     </section>
 
     <section id="movieDetail" class="movieDetail-container inactive">
@@ -103,19 +113,22 @@
         <h2 class="relatedMovies-title">Similars Movies</h2>
 
         <div class="relatedMovies-scrollContainer">
-          <!-- <div class="movie-container">
-            <img
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading"></div>
+          <div class="movie-container movie-container--loading">
+            <!-- <img
               src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
               class="movie-img"
               alt="Nombre de la película"
-            />
-          </div> -->
+            /> -->
+          </div>
         </div>
       </article>
     </section>
 
     <footer>Hecho con amor por Eliezer</footer>
 
+    <script src="./node_modules/@splidejs/splide/dist/js/splide.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./src/secrets.js" type="module"></script>
     <script src="./src/nodes.js"></script>

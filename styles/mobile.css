@@ -17,6 +17,7 @@
   --red-dark-2: #ab141c;
 
   --white: #ffffff;
+  --white-dark: #525050;
   --yellow: #eecc75;
   --green: #cad297;
   --aqua: #b7eac5;
@@ -125,9 +126,30 @@ footer {
 .movie-container {
   cursor: pointer;
 }
+.movie-container--loading {
+  background-color: var(--white-dark);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+.movie-container--loading:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.movie-container--loading:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 .movie-img {
   border-radius: 8px;
+  min-height: 200px;
 }
 
 .categoriesPreview-list,
@@ -137,6 +159,19 @@ footer {
   justify-content: space-between;
   position: relative;
   flex-wrap: wrap;
+}
+
+.category-container--loading {
+  background-color: var(--white-dark);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
 }
 
 /* Header */
@@ -153,7 +188,7 @@ footer {
     ),
     url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
   background-size: cover !important;
-  height: 480px;
+  height: 78%;
   position: fixed;
   top: 0;
   width: 100%;
@@ -350,6 +385,7 @@ footer {
 
 .genericList-container .movie-img {
   width: inherit;
+  height: 100%;
 }
 
 /* Movie Detail */
@@ -437,4 +473,15 @@ footer {
 /* Navigation */
 .inactive {
   display: none;
+}
+
+/* Animations */
+@keyframes loading-skeleton {
+  0%,
+  100% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
 }
