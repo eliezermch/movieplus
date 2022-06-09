@@ -21,12 +21,18 @@ const lazyLoader = new IntersectionObserver((entries) => {
   });
 });
 
-const createMovies = (movies, container, lazyLoad = false) => {
-  container.innerHTML = "";
+const createMovies = (
+  movies,
+  container,
+  { lazyLoad = false, clean = true } = {}
+) => {
+  if (clean) {
+    container.innerHTML = "";
+  }
 
   movies.forEach((movie) => {
     const movieContainer = document.createElement("div");
-    movieContainer.classList.add("movie-container");
+    movieContainer.classList.add("movie-container", "item");
     movieContainer.addEventListener("click", () => {
       location.hash = `#movie=${movie.id}`;
     });
@@ -45,11 +51,18 @@ const createMovies = (movies, container, lazyLoad = false) => {
       );
     });
 
+    // const movieBtn = document.createElement("button");
+    // movieBtn.classList.add("movie-btn");
+    // movieBtn.addEventListener("click", () => {
+    //   movieBtn.classList.toggle("movie-btn--liked");
+    // })
+
     if (lazyLoad) {
       lazyLoader.observe(movieImg);
     }
 
     movieContainer.appendChild(movieImg);
+    // movieContainer.appendChild(movieBtn);
     container.appendChild(movieContainer);
   });
 };
@@ -83,7 +96,7 @@ const getTrendingMoviesPreview = async () => {
     const { data } = await api(`/trending/movie/day`);
     const movies = data.results;
 
-    createMovies(movies, trendingMoviesPreviewList, true);
+    createMovies(movies, trendingMoviesPreviewList, { lazyLoad: true });
   } catch (err) {
     console.log(err);
   }
@@ -108,12 +121,39 @@ const getMoviesByCategory = async (id) => {
       },
     });
     const movies = data.results;
+    maxPage = data.total_pages;
 
-    createMovies(movies, genericSection, true);
+    createMovies(movies, genericSection, { lazyLoad: true });
   } catch (err) {
     console.log(err);
   }
 };
+
+function getPaginatedMoviesByCategory(id) {
+  return async function () {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 200;
+    const pageIsNotMax = page < maxPage;
+
+    if (scrollIsBottom && pageIsNotMax) {
+      try {
+        page++;
+        const { data } = await api(`/discover/movie`, {
+          params: {
+            with_genres: id,
+            page,
+          },
+        });
+        const movies = data.results;
+
+        createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+}
 
 const getMoviesBySearch = async (query) => {
   try {
@@ -123,6 +163,8 @@ const getMoviesBySearch = async (query) => {
       },
     });
     const movies = data.results;
+    maxPage = data.total_pages;
+    console.log(maxPage);
 
     createMovies(movies, genericSection);
   } catch (err) {
@@ -130,14 +172,69 @@ const getMoviesBySearch = async (query) => {
   }
 };
 
+function getPaginatedMoviesBySearch(query) {
+  return async function () {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 200;
+    const pageIsNotMax = page < maxPage;
+
+    if (scrollIsBottom && pageIsNotMax) {
+      try {
+        page++;
+        const { data } = await api(`/search/movie`, {
+          params: {
+            query,
+            page,
+          },
+        });
+        const movies = data.results;
+
+        createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+}
+
 const getTrendingMovies = async () => {
   try {
     const { data } = await api(`/trending/movie/day`);
     const movies = data.results;
+    maxPage = data.total_pages;
 
-    createMovies(movies, genericSection);
+    createMovies(movies, genericSection, { lazyLoad: true, clean: true });
   } catch (err) {
     console.log(err);
+  }
+};
+
+let maxPage;
+let page = 1;
+
+window.addEventListener("scroll", () => getPaginatedTrendingMovies());
+
+const getPaginatedTrendingMovies = async () => {
+  const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+  const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 200;
+  const pageIsNotMax = page < maxPage;
+
+  if (scrollIsBottom && pageIsNotMax) {
+    try {
+      page++;
+      const { data } = await api(`/trending/movie/day`, {
+        params: {
+          page,
+        },
+      });
+      const movies = data.results;
+
+      createMovies(movies, genericSection, { lazyLoad: true, clean: false });
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 
@@ -145,7 +242,7 @@ const getMovieById = async (id) => {
   try {
     const { data: movie } = await api(`/movie/${id}`);
 
-    const movieImgUrl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    const movieImgUrl = `https://image.tmdb.org/t/p/original${movie.backdrop_path}`;
     headerSection.style.background = `
     linear-gradient(
       180deg,
@@ -181,4 +278,7 @@ export {
   getMoviesBySearch,
   getTrendingMovies,
   getMovieById,
+  getPaginatedTrendingMovies,
+  getPaginatedMoviesBySearch,
+  getPaginatedMoviesByCategory,
 };

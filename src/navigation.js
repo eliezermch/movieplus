@@ -5,7 +5,12 @@ import {
   getMoviesBySearch,
   getTrendingMovies,
   getMovieById,
+  getPaginatedTrendingMovies,
+  getPaginatedMoviesBySearch,
+  getPaginatedMoviesByCategory,
 } from "./main.js";
+
+let infiniteScroll;
 
 searchFormBtn.addEventListener("click", () => {
   location.hash = `#search=${searchFormInput.value}`;
@@ -20,8 +25,14 @@ arrowBtn.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", () => navigator(), false);
 window.addEventListener("hashchange", () => navigator(), false);
+window.addEventListener("scroll", () => infiniteScroll, false);
 
 const navigator = () => {
+  if (infiniteScroll) {
+    window.removeEventListener("scroll", infiniteScroll, { passive: false });
+    infiniteScroll = undefined;
+  }
+
   if (location.hash.startsWith("#trends")) {
     trendsPage();
   } else if (location.hash.startsWith("#search=")) {
@@ -36,6 +47,12 @@ const navigator = () => {
 
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
+
+  if (infiniteScroll) {
+    window.addEventListener("scroll", () => infiniteScroll, {
+      passive: false,
+    });
+  }
 };
 
 const homePage = () => {
@@ -77,6 +94,8 @@ const categoriesPage = () => {
   headerCategoryTitle.innerHTML = newCategoryName;
 
   getMoviesByCategory(categoryId);
+
+  infiniteScroll = getPaginatedMoviesByCategory(categoryId);
 };
 
 const movieDetailsPage = () => {
@@ -116,6 +135,8 @@ const searchPage = () => {
 
   const [_, query] = location.hash.split("="); // => ['#search', 'value']
   getMoviesBySearch(query);
+
+  infiniteScroll = getPaginatedMoviesBySearch(query);
 };
 
 const trendsPage = () => {
@@ -135,4 +156,6 @@ const trendsPage = () => {
   headerCategoryTitle.innerHTML = "Tendencias";
 
   getTrendingMovies();
+
+  infiniteScroll = getPaginatedTrendingMovies;
 };

@@ -24,12 +24,14 @@
   </head>
   <body>
     <header id="header" class="header-container">
-      <span class="header-arrow inactive">&lt;</span>
+      <span class="header-arrow inactive">
+        <img src="./assets/icons/icon-arrow-left.png" alt="Left black arrow" />
+      </span>
       <h1 class="header-title">Movies</h1>
       <h1 class="header-title header-title--categoryView inactive"></h1>
 
       <form id="searchForm" class="header-searchForm">
-        <input type="text" placeholder="Vengadores" />
+        <input type="text" placeholder="Vengadores..." />
         <button id="searchBtn">
           <img
             class="search-icon-white"
@@ -46,7 +48,7 @@
         <button class="trendingPreview-btn">Ver más</button>
       </div>
 
-      <article class="trendingPreview-movieList">
+      <article class="trendingPreview-movieList container">
         <div class="movie-container movie-container--loading"></div>
         <div class="movie-container movie-container--loading"></div>
         <div class="movie-container movie-container--loading">
@@ -71,7 +73,23 @@
       </article>
     </section>
 
-    <section id="genericList" class="genericList-container inactive">
+    <!-- <section id="liked" class="liked-container">
+      <div class="liked-header">
+        <h2 class="liked-title">Peliculas Favoritas</h2>
+
+        <article class="liked-movieList">
+          <div class="movie-container">
+            <img
+              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+              class="movie-img"
+              alt="Nombre de la película"
+            />
+          </div>
+        </article>
+      </div>
+    </section> -->
+
+    <section id="genericList" class="genericList-container inactive container">
       <div class="movie-container movie-container--loading"></div>
       <div class="movie-container movie-container--loading"></div>
       <div class="movie-container movie-container--loading">
@@ -117,10 +135,10 @@
           <div class="movie-container movie-container--loading"></div>
           <div class="movie-container movie-container--loading">
             <!-- <img
-              src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
-              class="movie-img"
-              alt="Nombre de la película"
-            /> -->
+                src="https://image.tmdb.org/t/p/w300/adOzdWS35KAo21r9R4BuFCkLer6.jpg"
+                class="movie-img"
+                alt="Nombre de la película"
+              /> -->
           </div>
         </div>
       </article>

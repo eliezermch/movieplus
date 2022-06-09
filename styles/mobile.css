@@ -45,6 +45,8 @@ html {
 }
 
 body {
+  overflow-x: hidden;
+  height: 100vh;
   background-color: var(--background-color);
   color: var(--red-dark-2);
   font-family: var(--font-family-text);
@@ -85,14 +87,14 @@ h3 {
 
 input {
   background-color: var(--gray);
-  color: var(--font-color-gray);
+  color: var(--white);
   border: none;
   font-size: var(--font-size-md);
   padding-left: 16px;
 }
 
 input::placeholder {
-  color: var(--red-medium-1);
+  color: var(--font-color-gray);
   font-family: var(--font-family-text);
 }
 
@@ -108,12 +110,14 @@ button {
 /* Shared */
 .header-container,
 .trendingPreview-header,
-.categoriesPreview-container {
+.categoriesPreview-container,
+.liked-container {
   padding: 0 24px;
 }
 
 .trendingPreview-container,
 .categoriesPreview-container,
+.liked-container,
 footer {
   margin-top: 48px;
 }
@@ -180,18 +184,19 @@ footer {
 }
 
 .header-container--long {
-  background-image: url("https://pics.filmaffinity.com/Deadpool-777527803-large.jpg");
+  background-image: url();
   background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.35) 19.27%,
       rgba(0, 0, 0, 0) 29.17%
     ),
-    url(https://pics.filmaffinity.com/Deadpool-777527803-large.jpg);
-  background-size: cover !important;
+    url();
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  width: 100%;
   height: 78%;
   position: fixed;
   top: 0;
-  width: 100%;
 }
 
 .header-container--categoryView {
@@ -249,6 +254,11 @@ footer {
   justify-content: flex-start;
 }
 
+.liked-header {
+  display: flex;
+  flex-direction: column;
+}
+
 .trendingPreview-header .trendingPreview-title {
   margin-right: 32px;
 }
@@ -268,12 +278,23 @@ footer {
   padding-bottom: 16px;
 }
 
-.trendingPreview-movieList .movie-container {
+.liked-movieList {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  height: 241px;
+  padding-bottom: 16px;
+  margin-top: 16px;
+}
+
+.trendingPreview-movieList .movie-container,
+.liked-movieList .movie-container {
   display: inline-block;
   margin-right: 8px;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
+.trendingPreview-movieList .movie-container .movie-img,
+.liked-movieList .movie-container .movie-img {
   height: 225px;
   min-height: 225px;
   max-height: 225px;
@@ -294,6 +315,10 @@ footer {
   overflow: hidden;
   text-overflow: ellipsis;
   width: auto;
+}
+
+.category-title:hover {
+  color: var(--red-medium-2);
 }
 
 .category-title::before {
@@ -390,10 +415,11 @@ footer {
 
 /* Movie Detail */
 .movieDetail-container {
+  width: 100%;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding: 32px 24px;
-  margin-top: 403px;
+  margin-top: 132px;
   z-index: 1;
   position: absolute;
   background-color: var(--background-color);
@@ -483,5 +509,17 @@ footer {
   }
   50% {
     opacity: 0%;
+  }
+}
+
+@media (min-width: 400px) {
+  .movieDetail-container {
+    margin-top: 180px;
+  }
+}
+
+@media (min-width: 550px) {
+  .movieDetail-container {
+    margin-top: 262px;
   }
 }

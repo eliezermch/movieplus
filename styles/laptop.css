@@ -6,6 +6,10 @@ h2 {
   font-size: var(--font-size-lg);
 }
 
+.movie-img {
+  display: block;
+}
+
 .movieDetail-description {
   font-size: var(--font-size-md);
 }
@@ -41,9 +45,34 @@ h2 {
   margin-top: 494px;
 }
 
+/* Animations */
+
+.item {
+  position: relative;
+  display: block;
+  flex: 1 1 0px;
+  transition: transform 500ms;
+}
+
+.container .item:focus,
+.container .item:hover {
+  transform: scale(1.2);
+  z-index: 1;
+}
+.header-container--long {
+  width: 100%;
+  background-size: cover !important;
+  height: 64%;
+}
+.movieDetail-container {
+  margin-top: 404px;
+}
 @media (min-width: 1024px) {
   h3 {
     font-size: var(--font-size-md);
+  }
+  .header-container--long {
+    height: 84%;
   }
   .trendingPreview-movieList {
     overflow-x: hidden;
@@ -71,10 +100,13 @@ h2 {
   .trendingPreview-btn {
     display: none;
   }
-  /* .header-container--long {
-    height: 86%;
-  } */
   .movieDetail-container {
-    margin-top: 526px;
+    margin-top: 532px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .movieDetail-container {
+    margin-top: 634px;
   }
 }
