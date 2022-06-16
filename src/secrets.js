@@ -1,0 +1,5 @@
+const API_KEY = "eaa274ab94f09f6970f1cccdc38f24ff";
+const API_TOKEN =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlYWEyNzRhYjk0ZjA5ZjY5NzBmMWNjY2RjMzhmMjRmZiIsInN1YiI6IjYyOTBkOWYwZmQ2MzAwMDA2NjMwYTBkYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.IBzt5iDEy54JyrHvBLc6dlg-F4m-roBGJJzdC4-3lTY";
+
+export { API_KEY, API_TOKEN };
